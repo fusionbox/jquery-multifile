@@ -8,7 +8,7 @@
 ;(function($, global, undefined){
   $.fn.multifile = function(container, templateCb)
   {
-    var $container = $(container)
+    var $container
       , addInput = function(event)
         {
           var $this = $(this)
@@ -37,6 +37,19 @@
             event.preventDefault();
           };
         };
+
+    if ( container )
+    {
+      if ( typeof container == 'string' )
+        $container = $(container);
+      else
+        $container = container;
+    }
+    else
+    {
+      $container = $('<div class="multifile_container" />');
+      this.after($container);
+    }
 
     return this.each(function(index, elem)
     {

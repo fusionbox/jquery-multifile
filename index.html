@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <title>jquery.multifile.js</title>
+    <style type="text/css">
+      html, body {
+        margin: 0 auto;  
+        max-width: 500px;  
+        font: 13px/22px Helvetica, Arial, sans-serif;  
+      }
+
+      header, nav, article, section, aside, footer {
+        display: block;
+      }
+
+      header#header {
+        padding: 21px;
+      }
+
+      h2 {  
+        font-size: 28px;  
+      }  
+
+      h3 {  
+        font-size: 18px;  
+      }
+
+      section h1 {
+        display: none;
+      }
+
+      footer {
+        padding: 21px;
+      }
+
+      pre code {
+        width: 484px;
+        overflow-x: auto;
+      }
+
+      .multifile_remove_input {
+        color: red;
+        text-decoration: none;
+      }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="lib/showdown.js"></script>
+    <script type="text/javascript">
+      jQuery(function($)
+      {
+        $.get('README.md', function(data)
+        {
+          $('.explanation').html((new Showdown.converter()).makeHtml(data));
+        });
+      });
+    </script>
+    <script src="jquery.multifile.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>jquery.multifile.js</h1>
+    </header>
+    <section class="explanation">
+      <p>If you don't have JavaScript enabled, I doubt multifile will work for you :(.  Maybe use the multiple attribute?</p>
+    </section>
+    <section class="demo">
+      <h2>Demo</h2>
+      <input id="file_input" type="file" name="files[]">
+    </section>
+  <script type="text/javascript">
+    jQuery(function($)
+    {
+      $('#file_input').multifile();
+    });
+  </script>
+  </body>
+</html>
