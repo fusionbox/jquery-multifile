@@ -11,7 +11,7 @@
       <img class="multifile_preview" /> \
       <a class="multifile_preview"></a> \
     </p>')
-    , fr = new FileReader();
+      , fr = new FileReader();
     $tmpl.find('span.filename').text(file.name);
     fr.onload = $multifile.fileReaderCb($tmpl, file);
     fr.readAsDataURL(file);
