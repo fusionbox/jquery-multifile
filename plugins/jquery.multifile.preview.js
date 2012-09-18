@@ -1,5 +1,8 @@
 ;(function($, global, $multifile){
 
+  if ( !global.FileReader )
+    return;
+
   $multifile.templateCb = function(file){
     var fr = null
     , $tmpl = $('<p class="uploaded_image"> \
