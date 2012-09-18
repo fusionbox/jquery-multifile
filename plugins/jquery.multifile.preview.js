@@ -23,10 +23,10 @@
     return function(event)
     {
       if ( $multifile.image_filter.test(file_obj.type) )
-        $tmpl.find('img.preview')
+        $tmpl.find('img.multifile_preview')
           .attr('src', event.target.result);
       else
-        $tmpl.find('a.preview')
+        $tmpl.find('a.multifile_preview')
           .attr('href', event.target.result)
           .html(file_obj.name);
     };
