@@ -28,7 +28,7 @@
       else
         $tmpl.find('a.multifile_preview')
           .attr('href', event.target.result)
-          .html(file_obj.name);
+          .text('Preview');
     };
   };
 
