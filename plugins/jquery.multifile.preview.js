@@ -4,14 +4,14 @@
     return;
 
   $multifile.templateCb = function(file){
-    var fr = null
-    , $tmpl = $('<p class="uploaded_image"> \
+    var $tmpl = $('<p class="uploaded_image"> \
       <a href="" class="multifile_remove_input">x</a> \
-      <span class="filename">'+ file.name +'</span> \
-      <img class="preview" />
-      <a class="preview">' + file.name + '</a></span>
-    </p>');
-    fr = new FileReader();
+      <span class="filename"></span> \
+      <img class="multifile_preview" /> \
+      <a class="multifile_preview"></a> \
+    </p>')
+    , fr = new FileReader();
+    $tmpl.find('span.filename').text(file.name);
     fr.onload = $multifile.fileReaderCb($tmpl, file);
     fr.readAsDataURL(file);
     return $tmpl;
