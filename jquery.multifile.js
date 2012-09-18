@@ -6,13 +6,20 @@
  * uploading more than one file at a time.
  */
 ;(function($, global, undefined){
-  $.fn.multifile = function(container, templateCb)
+  $.fn.multifile = function(container, templateCb, preview)
   {
     var $container
+      , preview_image = preview || false
+      , fr = null
       , addInput = function(event)
         {
           var $this = $(this)
+            , $rendered_tmpl = null
+            , file_obj = $.fn.multifile.getFileObject(this)
             , new_input = $this.clone(true, false);
+
+          if ( preview_image && !fr && global.FileReader )
+            fr = new FileReader();
 
           $this
             .unbind(event)
@@ -21,10 +28,16 @@
 
           templateCb = templateCb || $.fn.multifile.templateCb;
 
-          templateCb($.fn.multifile.getFileObject(this))
-            .appendTo($container)
+          $rendered_tmpl = templateCb(file_obj)
+            .appendTo($container);
+          $rendered_tmpl
             .find('.multifile_remove_input')
               .bind('click.multifile', bindRemoveInput($this));
+          if ( fr )
+          {
+            fr.onload = $.fn.multifile.fileReaderEvent($rendered_tmpl, file_obj);
+            fr.readAsDataURL(file_obj);
+          }
         }
       , bindRemoveInput = function($input)
         {
@@ -59,12 +72,28 @@
     });
   };
 
+  $.fn.multifile.image_filter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+
   $.fn.multifile.templateCb = function(file)
   {
     return $('<p class="uploaded_image"> \
       <a href="" class="multifile_remove_input">x</a> \
       <span class="filename">'+ file.name +'</span> \
-    </p>')
+    </p>');
+  };
+
+  $.fn.multifile.fileReaderEvent = function($elem, file_obj)
+  {
+    return function(event)
+    {
+    if ( $.fn.multifile.image_filter.test(file_obj.type) )
+      $elem.find('img.preview')
+        .attr('src', event.target.result);
+    else
+      $elem.find('a.preview')
+        .attr('href', event.target.result)
+        .html(file_obj.name);
+    };
   };
 
   $.fn.multifile.getFileObject = function(input)
