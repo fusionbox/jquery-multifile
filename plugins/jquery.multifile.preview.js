@@ -9,7 +9,6 @@
       <a href="" class="multifile_remove_input">x</a> \
       <span class="filename"></span> \
       <img class="multifile_preview" /> \
-      <a class="multifile_preview"></a> \
     </p>')
       , fr = new FileReader();
     $tmpl.find('span.filename').text(file.name);
@@ -27,10 +26,6 @@
       if ( $multifile.image_filter.test(file_obj.type) )
         $tmpl.find('img.multifile_preview')
           .attr('src', event.target.result);
-      else
-        $tmpl.find('a.multifile_preview')
-          .attr('href', event.target.result)
-          .text('Preview');
     };
   };
 
