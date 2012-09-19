@@ -18,3 +18,21 @@ HTML file inputs suck... it is difficult to upload more than one file at a time.
 
 ### JavaScript
     $('.multifile').multifile();
+
+## Plugins
+
+### jquery.multifile.preview
+
+To add image previews add a script tag with the `src` attribute set to the 
+`jquery.multifile.preview` plugin **after** `jquery.multifile.js`.
+
+    <script src="js/jquery.multifile.js" />
+    <script src="js/jquery.multifile.preview.js" />
+
+Now there is an `img.multifile_preview` element that will use the [FileReader API] 
+to set the `src` to the DataURI of the file to be uploaded.
+
+**Note** The browser must have support for the [FileReader API] and the [Data URI scheme]
+
+[FileReader API]: https://developer.mozilla.org/en-US/docs/DOM/FileReader "FileReader"
+[Data URI scheme]: https://en.wikipedia.org/wiki/Data_URI_scheme "Data URI"
