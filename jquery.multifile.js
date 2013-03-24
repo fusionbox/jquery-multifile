@@ -6,8 +6,11 @@
  * uploading more than one file at a time.
  */
 ;(function($, global, undefined){
-  $.fn.multifile = function(container, templateCb)
+  $.fn.multifile = function(attributes)
   {
+    var container = attributes['container'];
+    var templateCb = attributes['template'];
+
     var $container
       , addInput = function(event)
         {
