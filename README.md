@@ -22,7 +22,7 @@ HTML file inputs suck... it is difficult to upload more than one file at a time.
 ## Customization example
 You can customize plugin by setting target container (using jquery selectors) for uploaded files and specifying template for each file
 
-    $('#file_input').multifile({
+    $('.multifile').multifile({
         container: "#upload-container",
         template: function (file) {
             var fileName = file.name;
