@@ -19,6 +19,27 @@ HTML file inputs suck... it is difficult to upload more than one file at a time.
 ### JavaScript
     $('.multifile').multifile();
 
+## Customization example
+You can customize plugin by setting target container (using jquery selectors) for uploaded files and specifying template for each file
+
+    $('.multifile').multifile({
+        container: "#upload-container",
+        template: function (file) {
+            var fileName = file.name;
+            var fileExtension = file.name.split('.').pop();
+
+            var result =
+                '<p class="uploaded_image">' +
+                '<a href="#" class="multifile_remove_input">Close me</a>' +
+                '<span class="filename">$fileName ($fileExtension)</span>' +
+                '</p>';
+
+            result = result.replace('$fileExtension', fileExtension).replace('$fileName', fileName)
+
+            return $(result);
+        }
+    })
+
 ## Plugins
 
 ### jquery.multifile.preview
