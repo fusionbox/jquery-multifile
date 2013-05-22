@@ -40,6 +40,15 @@ You can customize plugin by setting target container (using jquery selectors) fo
         }
     })
 
+
+## Options
+There are several optional options you can pass into multifile:
+
+- **container** - A jQuery-able (selector, element, jQuery object, etc.) where
+  the files to be uploaded should be put.
+
+- **template** - A callback for creating the file preview.
+
 ## Plugins
 
 ### jquery.multifile.preview
