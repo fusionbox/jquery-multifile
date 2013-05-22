@@ -1,0 +1,22 @@
+{
+  "name": "multifile",
+  "version": "0.0.3",
+  "title": "multifile",
+  "description": "HTML file inputs suck...",
+  "author": {
+    "name": "Fusionbox",
+    "url": "http://www.fusionbox.com/"
+  },
+  "licenses": [{
+      "type": "BSD-2-Clause",
+      "url": "http://opensource.org/licenses/BSD-2-Clause"
+  }],
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "keywords": [
+    "multiple",
+    "file"
+  ],
+  "homepage": "http://www.fusionbox.org/jquery-multifile/"
+}
